@@ -29,11 +29,13 @@ def converter_valor(valor, formato):
 
 
 def selecionar_arquivo():
+    """Função para selecionar o arquivo diretamente"""
     return filedialog.askopenfilename(filetypes=[("Arquivos Excel", "*.xlsx")])
 
 
 
 def criar_planilha():
+    """Cria uma planilha do excel vazia"""
     output_path = filedialog.asksaveasfilename(
         defaultextension=".xlsx",
         filetypes=[("Arquivos Excel", "*.xlsx")],
@@ -51,6 +53,7 @@ def criar_planilha():
 
 
 def obter_formatacao_escolhida(opcao):
+    """Retorna a formatação escolhida"""
     formatos = {
         '1': numbers.FORMAT_GENERAL,
         '2': 'R$ #,##0.00',
@@ -61,6 +64,7 @@ def obter_formatacao_escolhida(opcao):
 
 
 def carregar_formatacoes_planilha(caminho_arquivo):
+    """Carrega as formatações de uma planilha que foi importada"""
     global FORMATACOES_POR_PLANILHA
     try:
         wb = load_workbook(caminho_arquivo)
@@ -86,6 +90,7 @@ def carregar_formatacoes_planilha(caminho_arquivo):
 
 
 def adicionar_colunas():
+    """Adiciona colunas numa tabela já existente"""
     try:
         global FORMATACOES_POR_PLANILHA
         caminho_arquivo = selecionar_arquivo()
@@ -121,6 +126,7 @@ def adicionar_colunas():
     except Exception as e:
         messagebox.showinfo("ERRO", f"Erro ao adicionar colunas: {e}")
 
+
 def aplicar_formatacoes(output_path, formatacoes):
     """Aplica as formatações às colunas da planilha"""
     try:
@@ -148,6 +154,7 @@ def aplicar_formatacoes(output_path, formatacoes):
 
 
 def adicionar_dados():
+    """Função que adiciona dados a uma planilha já existente"""
     global FORMATACOES_POR_PLANILHA
     try:
         caminho_arquivo = selecionar_arquivo()
@@ -307,6 +314,7 @@ def gerar_relatorios():
 
 
 def main():
+    """Função principal"""
     root = tk.Tk()
     root.title("Gerenciador de Planilhas Excel")
     root.geometry("400x300")
